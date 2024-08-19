@@ -1,0 +1,36 @@
+[package]
+name = "vrc-mpv"
+version = "0.1.0"
+authors = ["Shayne Hartford <shaybox@shaybox.com>"]
+edition = "2021"
+description = "Play and sync VRChat videos in MPV"
+readme = "README.md"
+homepage = "https://git.shaybox.com/vrc-mpv"
+repository = "https://github.com/ShayBox/VRC-MPV"
+license = "MIT"
+keywords = ["VRChat", "MPV"]
+categories = ["filesystem", "games"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1"
+chrono = "0.4"
+crossbeam = "0.8"
+lazy-regex = "3"
+mpvipc = "1"
+notify = "6"
+
+# https://github.com/johnthagen/min-sized-rust
+[profile.release]
+strip = true      # Automatically strip symbols from the binary.
+opt-level = "z"   # Optimize for size.
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+cargo = { level = "warn", priority = -1 }
+multiple_crate_versions = "allow"
